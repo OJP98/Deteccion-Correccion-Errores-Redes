@@ -6,7 +6,8 @@ Autores: 	Jose Cifuentes
 '''
 
 import socket     
-import pickle               
+import pickle  
+from parsing import *             
   
 cliente = socket.socket()          
   
@@ -19,7 +20,8 @@ cliente.connect(('127.0.0.1', port))
 # Recibimos la informacion del servidor
 mensaje=cliente.recv(1024)
 print("Mensaje serializado: "+str(mensaje))
-print ("Mensaje : "+str(pickle.loads(mensaje))) 
+
+print ("Mensaje : "+str(ConvertBitarrayToString(pickle.loads(mensaje)))) 
 
 # Cerramos la conexion
 cliente.close()

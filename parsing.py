@@ -53,7 +53,7 @@ def LoadData(data):
 	return received_data
 
 
-
+'''
 # _____________EJEMPLO_____________
 
 # EMISOR:
@@ -78,3 +78,4 @@ print("Se recibe:", informacion_recibida)
 	# DETECTAMOS Y CORREGIMOS ERRORES CON ALGORITMOS
 informacion_corregida = ConvertBitarrayToString(informacion_recibida) # Aún no hay correción de errores, esto puede dar una cadena rara
 print(informacion_corregida)
+'''
