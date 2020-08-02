@@ -5,7 +5,8 @@ Autores: 	Jose Cifuentes
 31/07/2020
 '''
 
-import socket                
+import socket 
+import pickle               
   
 server = socket.socket()          
 print ("Se crea el socket correctamente")
@@ -26,7 +27,9 @@ print ('Cliente conectado de: ', addr)
 
 # Solicitamos el mensaje y lo enviamos 
 mensaje=input("Ingrese el mensaje que desea enviar: ")
-client.send(mensaje.encode('utf-8')) 
+
+mensaje=pickle.dumps(mensaje)
+client.send(mensaje) 
 
 # Se cierra la conexion 
 client.close()

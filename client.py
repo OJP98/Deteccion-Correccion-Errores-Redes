@@ -5,7 +5,8 @@ Autores: 	Jose Cifuentes
 31/07/2020
 '''
 
-import socket                
+import socket     
+import pickle               
   
 cliente = socket.socket()          
   
@@ -16,7 +17,9 @@ port = 12345
 cliente.connect(('127.0.0.1', port)) 
   
 # Recibimos la informacion del servidor
-print (cliente.recv(1024)) 
+mensaje=cliente.recv(1024)
+print("Mensaje serializado: "+str(mensaje))
+print ("Mensaje : "+str(pickle.loads(mensaje))) 
 
 # Cerramos la conexion
 cliente.close()
