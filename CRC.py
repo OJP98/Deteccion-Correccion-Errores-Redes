@@ -1,5 +1,5 @@
 import binascii
-
+OVERHEAD=16
 '''
 	Esta funcion calcula el valor 
 	de verificacion adujunta del mensaje
@@ -16,8 +16,7 @@ def construirMensaje(mensaje):
 	#print(binario)
 	#Agregamos 16 bits en blanco
 	binarioTemp=binario
-	binarioTemp+=bin(0)[2:].zfill(8)
-	binarioTemp+=bin(0)[2:].zfill(8)
+	binarioTemp+=bin(0)[2:].zfill(OVERHEAD)
 
 	#Calculamos cuanto hace falta
 	#para que nuestro mensaje modular
@@ -28,7 +27,7 @@ def construirMensaje(mensaje):
 
 	#Finalmente esa diferencia la 
 	#agregamos a nuestro mensaje
-	binario+=bin(resta)[2:].zfill(16)
+	binario+=bin(resta)[2:].zfill(OVERHEAD)
 	#print(binarioTemp)
 	#print(binario)
 
@@ -47,7 +46,7 @@ def check(binario):
 		return('Si hay error')
 
 def getText(binario):
-	bin_data =binario[0:len(binario)-16]
+	bin_data =binario[0:len(binario)-OVERHEAD]
 	n = int(bin_data, 2)	
 	return(binascii.unhexlify('%x' % n).decode())
 

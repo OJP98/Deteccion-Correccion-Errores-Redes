@@ -55,6 +55,7 @@ array_de_bits_con_ruido = SimulateNoise(array_de_bits, tasa_de_errores) # probab
 print("La cadena con ruido es:", array_de_bits_con_ruido)
 
 bitarray_con_ruido = bitarray(array_de_bits_con_ruido)
+print(bitarray_con_ruido)
 
 mensaje = pickle.dumps(bitarray_con_ruido)
 

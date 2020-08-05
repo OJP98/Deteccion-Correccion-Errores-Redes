@@ -28,9 +28,12 @@ start = time.time()
 
 try:
 	if(sys.argv[1]=='CRC'):
-		print(CRC.check(pickle.loads(mensaje)))
+		print(pickle.loads(mensaje))
+		print(ConvertBitarrayToBinaryString(pickle.loads(mensaje)))
+		mensajeString=ConvertBitarrayToBinaryString(pickle.loads(mensaje))
+		print(CRC.check(mensajeString))
 		print()
-		print("Mensaje "+CRC.getText(pickle.loads(mensaje)))
+		print("Mensaje "+CRC.getText(mensajeString))
 
 	elif sys.argv[1] == "hamming":
 		cadena_con_ruido = pickle.loads(mensaje)
