@@ -7,6 +7,7 @@ Autores: 	Jose Cifuentes
 
 import socket 
 import pickle   
+import CRC
 from parsing import *
   
 server = socket.socket()          
@@ -25,12 +26,14 @@ server.listen(5)
 # Establecer conexion con un cliente
 client, addr = server.accept()      
 print ('Cliente conectado de: ', addr) 
+print()
 
 # Solicitamos el mensaje y lo enviamos 
 mensaje=input("Ingrese el mensaje que desea enviar: ")
 
 # Armar bitarray
-array_de_bits = ConvertStringToBitarray(mensaje)
+#array_de_bits = ConvertStringToBitarray(mensaje)
+array_de_bits = CRC.construirMensaje(mensaje)
 print("La cadena original es:", array_de_bits)
 
 # Simular ruido y serializar data
