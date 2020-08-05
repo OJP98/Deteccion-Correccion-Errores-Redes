@@ -1,6 +1,6 @@
 from bitarray import bitarray
 from random import randint, choices, choice
-from math import log2
+from math import log2,floor
 import pickle
 
 # Función que recibe un string para convertirlo a un string binario
@@ -119,7 +119,7 @@ def ConvertHammingToMessage(hamming):
 	n = len(hamming)
 	iterations = log2(n)
 
-	for i in range(round(iterations)+1):
+	for i in range(floor(iterations)+1):
 		newPosition = n - 2**i
 		hamming = hamming[:newPosition] + hamming[newPosition + 1:]
 
@@ -156,7 +156,7 @@ def DetectAndReplaceError(data):
 
 # _____________EJEMPLO_____________
 
-cadena = "Hola"
+cadena = "adios"
 
 # Convertir texto binario
 cadena_binaria = ConvertToBinaryString(cadena)
