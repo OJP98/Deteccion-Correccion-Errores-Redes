@@ -158,7 +158,7 @@ def DetectAndReplaceError(data):
 
 	return data
 
-
+"""
 # _____________EJEMPLO_____________
 
 cadena = "adios"
@@ -198,3 +198,5 @@ print("Mensaje de hamming a texto binario:", cadena_string)
 
 mensaje_recibido = ConvertBitarrayToString(cadena_string)
 print("Mensaje recibido: ", mensaje_recibido)
+
+"""

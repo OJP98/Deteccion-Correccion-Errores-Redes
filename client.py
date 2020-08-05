@@ -22,17 +22,28 @@ cliente.connect(('127.0.0.1', port))
   
 
 # Recibimos la informacion del servidor
-mensaje=cliente.recv(1024)
+mensaje = cliente.recv(1024)
 
 start = time.time()
 
-print("Mensaje serializado: "+str(mensaje))
-print()
 try:
 	if(sys.argv[1]=='CRC'):
 		print(CRC.check(pickle.loads(mensaje)))
 		print()
 		print("Mensaje "+CRC.getText(pickle.loads(mensaje)))
+
+	elif sys.argv[1] == "hamming":
+		cadena_con_ruido = pickle.loads(mensaje)
+
+		# Corregir texto binario con ruido (SOLO PARA HAMMING)
+		cadena_corregida = DetectAndReplaceError(cadena_con_ruido)
+
+		# Convertir texto en codigo hamming a texto binario
+		cadena_string = ConvertHammingToMessage(cadena_corregida)
+
+		mensaje_recibido = ConvertBitarrayToString(cadena_string)
+		print("Mensaje recibido: ", mensaje_recibido)
+
 except Exception as e:
 	print ("Mensaje : "+str(ConvertBitarrayToString(pickle.loads(mensaje)))) 
 
