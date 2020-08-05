@@ -8,7 +8,10 @@ Autores: 	Jose Cifuentes
 import socket 
 import pickle   
 import CRC
+import sys
+import time
 from parsing import *
+
   
 server = socket.socket()          
 print ("Se crea el socket correctamente")
@@ -31,9 +34,14 @@ print()
 # Solicitamos el mensaje y lo enviamos 
 mensaje=input("Ingrese el mensaje que desea enviar: ")
 
+start = time.time()
 # Armar bitarray
-#array_de_bits = ConvertStringToBitarray(mensaje)
-array_de_bits = CRC.construirMensaje(mensaje)
+try:
+	if(sys.argv[1]=='CRC'):
+		array_de_bits = CRC.construirMensaje(mensaje)
+except Exception as e:
+	array_de_bits = ConvertStringToBitarray(mensaje)
+
 print("La cadena original es:", array_de_bits)
 
 # Simular ruido y serializar data
@@ -41,9 +49,10 @@ array_de_bits_con_ruido = SimulateNoise(array_de_bits, 1) # probabilidad que 1/1
 
 mensaje=pickle.dumps(array_de_bits_con_ruido)
 
-#GUARDAR EN VARIABLE MENSAJE LO QUE SE QUIERA ENVIAR
-
 client.send(mensaje) 
 
 # Se cierra la conexion 
 client.close()
+end = time.time()
+
+print("Tiempo de envío de mensaje: "+ str(end-start))

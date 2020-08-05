@@ -3,6 +3,11 @@ from random import randint, choices, choice
 from math import log2,floor
 import pickle
 
+# Función que recibe un string para convertirlo a bitarray
+def ConvertStringToBitarray(message):
+	binary = ''.join(bin(ord(x))[2:].zfill(8) for x in message)
+	return bitarray(binary)
+
 # Función que recibe un string para convertirlo a un string binario
 def ConvertToBinaryString(message):
 	return ''.join(bin(ord(x))[2:].zfill(8) for x in message)
